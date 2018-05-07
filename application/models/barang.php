@@ -47,7 +47,7 @@ class Barang extends CI_Model {
 			'harga_satuan' => $this->input->post('input_harga_satuan'),
 			'gambar' => $upload['file']['file_name'],
 			'keterangan' => $this->input->post('input_keterangan'),
-	       	'tanggal' => date('d-m-Y'),
+	       	'tanggal' => $this->input->post('input_tanggal'),
 		);
 
 		$this->db->insert('barang', $data);
@@ -58,9 +58,8 @@ class Barang extends CI_Model {
 		$jumlah_stok = $this->db->escape($post['jumlah_stok']);
 		$harga_satuan=$this->db->escape($post['harga_satuan']);
 		$keterangan=$this->db->escape($post['keterangan']);
-		$tanggal=$this->db->escape($post['tanggal']);
 
-		$sql = $this->db->query('UPDATE barang SET nama_barang = $nama_barang, jumlah_stok = $jumlah_stok,harga_satuan = $harga_satuan, keterangan = $keterangan, tanggal = $tanggal WHERE id_barang = '.intval($id_barang));
+		$sql = $this->db->query('UPDATE barang SET nama_barang = $nama_barang, jumlah_stok = $jumlah_stok,harga_satuan = $harga_satuan, keterangan = $keterangan WHERE id_barang = '.intval($id_barang));
 
 		return TRUE;
 
@@ -68,8 +67,13 @@ class Barang extends CI_Model {
 
 
 	public function delete($id_barang){
-		$query = $this->db->query('DELETE from barang WHERE id_barang= 
-			'.$id_barang);
+		$row = $this->db->where('id_barang',$id_barang)->get('barang')->row();
+
+		$this->db->where('id_barang', $id_barang);
+
+		unlink('/img/'.$row->gambar);
+
+		$this->db->delete('barang', array('id_barang' => $id_barang));
 	}
 
 	public function create_category()

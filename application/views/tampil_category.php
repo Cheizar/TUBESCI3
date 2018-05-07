@@ -90,8 +90,10 @@
                 <tr>
                   <td><?php echo $key->id_kategori ?></td>
                   <td><?php echo $key->nama_kategori ?></td>
-                  <td><a href="Category/edit/<?php echo $key->id_kategori ?>" class='btn btn-info'>Edit</a>
-                    <a href='Category/delete/<?php echo $key->id_kategori ?>' class='btn btn-sm btn-danger'>Hapus</a></td>
+                  <td>
+                    <a href="Category/edit/<?php echo $key->id_kategori ?>" class='btn btn-info'>Edit</a>
+                    
+                    <a href='Category/delete/<?php echo $key->id_kategori ?>' onClick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class='btn btn-sm btn-danger'>Hapus</a></td>
                   </tr>
                 </tbody>
               <?php endforeach;?>

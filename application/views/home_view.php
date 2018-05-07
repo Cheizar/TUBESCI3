@@ -112,14 +112,14 @@
           <td><?php echo $b->jumlah_stok; ?></td>
           <td><?php echo $b->harga_satuan; ?></td>
           <td><?php echo $b->keterangan; ?></td>
-          <td><img style='width:100px;height:150px' src="<?php echo base_url().'assets/img/'?><?php echo $b->gambar; ?>"></td>
+          <td><img style='width:100px;height:150px' src="<?php echo base_url().'/img/'?><?php echo $b->gambar; ?>"></td>
           <td><?php echo $b->tanggal; ?></td>
           <td>
-            <a href="home/edit/<?php echo $b->id_barang; ?>"  class="btn btn-primary">
+            <a style=" margin-bottom:20px" href="home/edit/<?php echo $b->id_barang; ?>"  class="btn btn-primary">
               <span class="fa fa-edit">  Edit</span>
             </a>
             <br>
-            <a href="<?php echo base_url()."home/delete/".$b->id_barang; ?> " onClick="return confirm('Apakah anda yakin ingin menghapus data ini?')"  class="btn btn-danger">
+            <a style=" margin-bottom:20px" href="<?php echo base_url()."home/delete/".$b->id_barang; ?> " onClick="return confirm('Apakah anda yakin ingin menghapus data ini?')"  class="btn btn-danger">
               <span class="fa fa-trash">  Hapus</span>
             </a>
           </td>

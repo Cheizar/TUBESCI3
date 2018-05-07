@@ -58,7 +58,7 @@
         <tr>
           <td>Tanggal </td>
           <td>:</td>
-          <td><input type="text" name="input_tanggal" id="date1" alt="date" class="IP_calendar" title="d/m/Y" value="<?php echo set_value('input_tanggal'); ?>"></td>
+          <td><input type="text" name="input_tanggal" class="IP_calendar" title="d/m/Y" value="<?php echo set_value('input_tanggal'); ?>"></td>
         </tr>
         
 
