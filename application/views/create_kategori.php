@@ -1,3 +1,4 @@
+<title>Tugas UTS</title>
 <div class="container">
   <?php echo validation_errors(); ?>
   

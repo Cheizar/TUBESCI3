@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Tugas UTS</title>
 </head>
 <body>
 
-	<?php echo form_open( 'Category/create', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
+	<?php echo form_open( 'Category/edit', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
 
 <div class="form-group">
    <label for="nama_kategori">Nama Kategori</label>

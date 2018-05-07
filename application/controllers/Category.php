@@ -14,10 +14,10 @@ public function index()
 }
 
 
-    public function detail($id)
+    public function detail($id_kategori)
     {
         $this->load->model('category_model');
-        $data['detail'] = $this->category_model->get_single($id);
+        $data['detail'] = $this->category_model->get_kategori_by_id($id_kategori);
         $this->load->view('category_detail', $data);
     }
 
@@ -37,7 +37,7 @@ public function index()
         );
 
         if($this->form_validation->run() === FALSE){
-            $this->load->view('form_category');
+            $this->load->view('create_kategori');
         } else {
             $this->category_model->create_category();
             redirect('Category');            
@@ -52,17 +52,19 @@ public function index()
     }
 
 
-    public function edit($id_kategori){
+    public function edit($id_kategori)
+    {
         $this->load->model('category_model');
         $data['tipe'] = "Edit";
-        $data['single'] = $this->category_model->get_single($id_kategori);
+        $data['single'] = $this->category_model->get_kategori_by_id($id_kategori);
 
-        if(isset($_POST['simpan'])){
+        if(isset($_POST['simpan']))
+        {
             $this->category_model->update($_POST, $id_kategori);
             redirect('tampil_category');
         }
 
-        $this->load->view("form_category",$data);
+        $this->load->view("edit_kategori",$data);
     }
 
 

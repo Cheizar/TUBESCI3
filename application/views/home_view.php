@@ -74,93 +74,63 @@
 <span id="about"></span>   
    <center><b>
     Inventaris Barang
-     
+     </b></center>
 
+<div class="container" style="padding-top: 20px;" >
+    <div class="col-md-12">
+    <h3><span class="fa fa-plus"></span> Data Barang </h3>          
+    <a style=" margin-bottom:20px" href="home/tambah" class="btn btn-info col-md-2 test"><span class="fa fa-plus"> Tambah Barang</span> <br/> 
+    </a>
+    <a style="margin-bottom:20px" href='category' class='btn btn-sm btn-danger'>Kategori</a>
+    <br/>
+    <br/>
+   </div> 
 
-    <!-- Main Content -->
-    <tr>
-   <div class="container">
-        <a href="home/tambah" class="btn btn-success"> Tambah </a>
-   </div>
-
-   <a href='home/edit/<?php echo $key->id_barang?>' class='btn btn-sm btn-info'>Update</a>
-
-                <a href='home/delete/<?php echo $key->id_barang;?>' class='btn btn-sm btn-danger'>Hapus</a>
-
-
-     
-
-
-   </center> </b>
-   <br></br>
-
-    <div class="container text-center">
-      <?php foreach ($artikel as $key): ?>
-
-
-<!-- form untuk menambahkan data -->
-
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          <table style="margin-bottom: 30px;">
-            <tr>
-              <td>
-                <a href="home/detail/<?php echo $key->id_barang ?>" style="color: black;">
-                  <img src="img/<?php echo $key->image;?>" alt="Image" width="500" height="400">
-                  <br>
-                  <?php echo $key->nama_barang ?>
-                </a>
-                <br></br>
-                <!-- <button>Edit</button> -->
-
-
-                <a href='home/edit/<?php echo $key->id_barang?>' class='btn btn-sm btn-info'>Update</a>
-
-                <a href='home/delete/<?php echo $key->id_barang;?>' class='btn btn-sm btn-danger'>Hapus</a>
-
-              </td>
-            </tr>
-          </table>
-        </div>
-      <?php endforeach ?>
-    </div>
-
-    <div class="container">
-      <!-- <?php
-        echo form_open('home/tambah', array('enctype'=>'multipart/form-data')); 
-       ?>
-      <table>
-        <tr>
-          <td>Judul</td>
-          <td>:</td>
-          <td><input type="text" name="input_judul" value="<?php echo set_value('input_jumlah_stok'); ?>"></td>
-        </tr>
-        <tr>
-          <td>Content</td>
-          <td>:</td>
-          <td><input type="text" name="input_content" value=""></td>
-        </tr>
-        <tr>
-          <td>Tanggal </td>
-          <td>:</td>
-          <td><input type="text" name="input_tanggal" value=""></td>
-        </tr>
-        <tr>
-          <td>Gambar</td>
-          <td>:</td>
-          <td><input type="file" name="input_gambar"></td>
-        </tr>
-        <tr>
-          <td colspan="3"><input type="submit" name="simpan" value="simpan"></td>
-        </tr>
- -->
-
-      </table>
-    </div>
-
+    <table class="table table-hover" >
+      <tr align="center">
+        <th class="col-md-0">No</th>
+        <th class="col-md-0">ID Barang</th>
+        <th class="col-md-0">ID Kategori</th>
+        <th class="col-md-0">Nama Barang</th>
+        <th class="col-md-0">Total Barang</th>
+        <th class="col-md-0">Harga Barang</th>
+        <th class="col-md-0">Keterangan Barang</th>
+        <th class="col-md-0">Gambar</th>
+        <th class="col-md-0">Tanggal Masuk</th>
+        <th class="col-md-0">Opsi</th>
+      </tr>
+      <?php 
+        $no=1;
+        foreach($barang as $b)
+        {
+      ?>
+        <tr align="center">
+          <td><?php echo $no++ ?></td>
+          <td><?php echo $b->id_barang; ?></td>
+          <td><?php echo $b->id_kategori; ?></td>
+          <td><?php echo $b->nama_barang; ?></td>
+          <td><?php echo $b->jumlah_stok; ?></td>
+          <td><?php echo $b->harga_satuan; ?></td>
+          <td><?php echo $b->keterangan; ?></td>
+          <td><img style='width:100px;height:150px' src="<?php echo base_url().'assets/img/'?><?php echo $b->gambar; ?>"></td>
+          <td><?php echo $b->tanggal; ?></td>
+          <td>
+            <a href="home/edit/<?php echo $b->id_barang; ?>"  class="btn btn-primary">
+              <span class="fa fa-edit">  Edit</span>
+            </a>
+            <br>
+            <a href="<?php echo base_url()."home/delete/".$b->id_barang; ?> " onClick="return confirm('Apakah anda yakin ingin menghapus data ini?')"  class="btn btn-danger">
+              <span class="fa fa-trash">  Hapus</span>
+            </a>
+          </td>
+        </tr>   
+        <?php 
+      }
+      ?>
+    </table>
+  </div>
 <br>
-<div>
-  <a href='category' class='btn btn-sm btn-danger'>Kategori</a>
-</div>
+
 
 
               <li class="list-inline-item">

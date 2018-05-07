@@ -5,15 +5,15 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model('artikel');
-		$data['artikel'] = $this->artikel->get_artikels();
+		$this->load->model('barang');
+		$data['barang'] = $this->barang->get_barang();
 		$this->load->view('home_view', $data);
 	}
 
 	public function detail($id)
 	{
-		$this->load->model('artikel');
-		$data['detail'] = $this->artikel->get_single($id);
+		$this->load->model('barang');
+		$data['detail'] = $this->barang->get_single($id);
 		$this->load->view('home_detail', $data);
 	}
 
@@ -21,17 +21,17 @@ class Home extends CI_Controller {
 
 public function tambah()
 {
-	$this->load->model('artikel');
+	$this->load->model('barang');
 	$this->load->model('category_model');
 	$data = array();
 	$data['Category'] = $this->category_model->get_categories();
 
 	$this->load->library('form_validation');
-	$this->form_validation->set_rules('input_nama_barang','isi nama barang!!!','required', array('required' => 'isi %s,'));
-	$this->form_validation->set_rules('input_jumlah_stok','isi jumlah stok!!!','required', array('required' => 'isi %s,'));
-	$this->form_validation->set_rules('input_harga_satuan','isi harga satuan!!!','required', array('required' => 'isi %s,'));
-	$this->form_validation->set_rules('input_keterangan','isi keterangan!!!','required', array('required' => 'isi %s,'));
-	$this->form_validation->set_rules('input_tanggal','isi tanggal!!!','required', array('required' => 'isi %s,'));
+	$this->form_validation->set_rules('input_nama_barang',' nama barang!!!','required', array('required' => 'Isi %s,'));
+	$this->form_validation->set_rules('input_jumlah_stok',' jumlah stok!!!','required', array('required' => 'Isi %s,'));
+	$this->form_validation->set_rules('input_harga_satuan',' harga satuan!!!','required', array('required' => 'Isi %s,'));
+	$this->form_validation->set_rules('input_keterangan',' keterangan!!!','required', array('required' => 'Isi %s,'));
+	$this->form_validation->set_rules('input_tanggal',' tanggal!!!','required', array('required' => 'Isi %s,'));
 
 
 	if($this->form_validation->run()==FALSE){
@@ -39,10 +39,10 @@ public function tambah()
 		}
 		else{
 			if ($this->input->post('simpan')) {
-			$upload = $this->artikel->upload();
+			$upload = $this->barang->upload();
 
 			if ($upload['result'] == 'success') {
-				$this->artikel->insert($upload);
+				$this->barang->insert($upload);
 				redirect('home');
 			}else{
 				$data['message'] = $upload['error'];
@@ -72,12 +72,12 @@ public function tambah()
 
 
 	public function edit($id_barang){
-		$this->load->model('artikel');
+		$this->load->model('barang');
 		$data['tipe'] = "Edit";
-		$data['default'] = $this->artikel->get_single($id_barang);
+		$data['default'] = $this->barang->get_single($id_barang);
 
 		if(isset($_POST['simpan'])){
-			$this->artikel->update($_POST, $id_barang);
+			$this->barang->update($_POST, $id_barang);
 			redirect('home_view');
 		}
 
@@ -113,8 +113,8 @@ if($this->form_validation->run() === FALSE){
 
 
 	public function delete($id_barang){
-		$this->load->model('artikel');
-		$this->artikel->delete($id_barang);
+		$this->load->model('barang');
+		$this->barang->delete($id_barang);
 		redirect('home');
 	}
 

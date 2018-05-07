@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Artikel extends CI_Model {
+class Barang extends CI_Model {
 
-	public function get_artikels(){
+	public function get_barang(){
 		$query = $this->db->get('barang');
 		return $query->result();
 	}	
@@ -41,12 +41,13 @@ class Artikel extends CI_Model {
 	{
 		$data = array(
 			'id_barang' => '',
+			'id_kategori' => $this->input->post('id_kategori'),
 			'nama_barang' => $this->input->post('input_nama_barang'),
 			'jumlah_stok' => $this->input->post('input_jumlah_stok'),
 			'harga_satuan' => $this->input->post('input_harga_satuan'),
 			'gambar' => $upload['file']['file_name'],
 			'keterangan' => $this->input->post('input_keterangan'),
-			'tanggal' => $this->input->post('input_tanggal'),
+	       	'tanggal' => date('d-m-Y'),
 		);
 
 		$this->db->insert('barang', $data);
